@@ -7,13 +7,13 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		int a = scan.nextInt();
 		int count = 0;
-		int first, second,third,fourth,fifth;
+		int first, second,third,fourth;
 		
 		if(a<100) {
 			System.out.println(a);
 		}
 		
-		else if(a>100) {
+		else if(a>=100) {
 			
 			for(int i = 100;i<=a;i++) {
 				first = i/1000;
