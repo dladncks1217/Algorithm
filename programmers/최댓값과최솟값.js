@@ -1,5 +1,5 @@
 function solution(s) {
-    var answer = [];
+    let answer = [];
     let arr = s.split(" ");
     answer.push(Math.min.apply("",arr))
     answer.push(Math.max.apply("",arr));
