@@ -13,21 +13,16 @@ function solution(new_id) {
         answer = answer.split('..').join('.')// 3단계
     }
     while(true){// 4단계
-        if(answer.charAt(0)!=='.'&&answer.charAt(answer.length-1)!=='.'){
-            break;
-        }else if(answer.charAt(0)==='.'){
-            answer = answer.slice(1);
-        }else if(answer.charAt(answer.length-1)==='.'){
-            answer = answer.slice(0,-1);
-        }
+        if(answer.charAt(0)!=='.'&&answer.charAt(answer.length-1)!=='.') break;
+        else if(answer.charAt(0)==='.') answer = answer.slice(1);
+        else if(answer.charAt(answer.length-1)==='.') answer = answer.slice(0,-1);
     }
     if(answer.length===0) answer = 'a'; // 5단계
     if(answer.length>15) { // 6단계
         answer=answer.slice(0,15);
         while(true){
-            if(answer.charAt(answer.length-1)==='.'){
-                answer = answer.slice(0,-1);
-            }else break;
+            if(answer.charAt(answer.length-1)==='.') answer = answer.slice(0,-1);
+            else break;
         }
     }
     if(answer.length===1) answer = `${answer}${answer}${answer}`; // 7단계
