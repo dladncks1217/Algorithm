@@ -14,7 +14,8 @@ const getPermuation = (arr,number) =>{
 function solution(numbers) {
     let numarr = numbers.split('');
     let permuation = [];
-    let answer = 0;
+    let answer = [];
+    let count = 0;
     for(let i = 1;i<=numbers.length;i++){
         permuation.push(...getPermuation(numarr,i));
     }
@@ -24,17 +25,19 @@ function solution(numbers) {
     permuation = permuation.filter((v,i)=>{
         return permuation.indexOf(v) === i;
     })
-    for(let i = 0;i<permuation.length;i++){
-        let num = permuation[i];
-        if(num===2||num===3||num===5||num===7){
-            answer++;
-        }else if(num<2||num%2===0||num%3===0||num%5===0||num%7===0){
-            continue;
-        }else{
-            answer++;
+    permuation.sort();
+    for(let i = 0;i<=permuation[permuation.length-1];i++) answer.push(true);
+    answer.splice(0,2,false,false);
+    for(let i = 2;i<=permuation[permuation.length-1];i++){
+        if(answer[i]){
+            for(let k = i*i;k<=permuation[permuation.length-1];k+=i){
+                answer[k] = false;
+            }
         }
     }
-
-    return answer;
+    permuation.forEach((v)=>{
+        if(answer[v]) count++;
+    })
+    return count;
 }
 console.log(solution("011"));
