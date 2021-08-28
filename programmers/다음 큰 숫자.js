@@ -4,7 +4,6 @@ function solution(n){
     while(true){
         first++;
         let arr2 = first.toString(2).split('').filter(v=>v==='1').length;
-        console.log(first,arr1, arr2);
          if(arr1===arr2) return first;
     }
 }
