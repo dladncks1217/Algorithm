@@ -1,20 +1,20 @@
 function solution(s, n) {
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
     let answer = '';
-    let asciicheck = s.split('');
-    answer = asciicheck.map((v)=>{
-        if(v===' '){
-            return ' ';
+    for (let i = 0; i < s.length; i++) {
+        const str = s[i];
+        if (str == ' ') {
+          answer += ' ';
+          continue;
         }
-        let newchar = v.charCodeAt();
-        console.log(newchar);
-        newchar+=n;
-        if(newchar>90 && newchar<90){
-            newchar = 65+(newchar-v.charCodeAt()-1);
-        }else if(newchar>=122){
-            newchar = 97+(newchar-v.charCodeAt()-1);
+        const upperOrLower = upper.includes(str) ? upper : lower;
+        let index = upperOrLower.indexOf(str) + n;
+        if (index >= upperOrLower.length) {
+        index -= upperOrLower.length;
         }
-        return String.fromCharCode(newchar);
-    }).join('');
+        answer += upperOrLower[index];
+    }
     return answer;
 }
 console.log(solution('a B z',4));
