@@ -6,8 +6,8 @@ function solution(w, h) {
         h = w % h;
         w = tmp;
     }
-    let broken = ((width+height)/w-1)*w;
-    return width*height-broken;
+    let broken = ((width + height) / w - 1) * w;
+    return width * height - broken;
 }
 
 solution(8, 12);
