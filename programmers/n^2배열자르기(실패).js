@@ -17,4 +17,4 @@ function solution(n, left, right) {
   return answer;
 }
 
-console.log(solution(3, 2, 5));
+console.log(solution(100000, 2, 5));

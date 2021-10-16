@@ -1,16 +1,15 @@
 function solution(n, left, right) {
   let answer = [];
-  let startpointheight = Math.floor(left / n);
-  let startpointlength = left % n;
+  let y = Math.floor(left / n);
+  let x = left % n;
 
   for (let i = 0; i <= right - left; i++) {
-    console.log(startpointheight, startpointlength);
-    answer.push(Math.max(startpointheight, startpointlength) + 1);
-    if (startpointlength + 1 < n) {
-      startpointlength++;
+    answer.push(Math.max(x, y) + 1);
+    if (x + 1 < n) {
+      x++;
     } else {
-      startpointheight++;
-      startpointlength = 0;
+      y++;
+      x = 0;
     }
   }
   return answer;
