@@ -7,7 +7,7 @@ function solution(m, arr) {
       answer.push(tmp.slice());
     } else {
       for (let i = 0; i < arr.length; i++) {
-        if (isZero[1] === 0) {
+        if (isZero[i] === 0) {
           isZero[i] = 1;
           tmp[L] = arr[i];
           DFS(L + 1);
