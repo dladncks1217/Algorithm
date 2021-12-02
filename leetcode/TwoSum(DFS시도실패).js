@@ -1,4 +1,5 @@
-var twoSum = function (nums, target) {
+//leetcode.com/problems/two-sum/
+https: var twoSum = function (nums, target) {
   let answer;
   let temp = [];
   let isUsed = Array.from({ length: nums.length }, () => 0);
@@ -18,7 +19,7 @@ var twoSum = function (nums, target) {
 
   function DFS(L, sum) {
     if (sum === target && temp.length === 2) {
-      answer = temp.slice();
+      return (answer = temp.slice());
     } else {
       for (let i = length - 1; i >= 0; i--) {
         if (isUsed[i] === 0) {
