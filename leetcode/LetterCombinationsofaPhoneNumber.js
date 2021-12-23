@@ -28,7 +28,6 @@ let letterCombinations = function (digits) {
     }
   }
   DFS(0);
-  if (result.length === 1) return [];
   return result;
 };
 
