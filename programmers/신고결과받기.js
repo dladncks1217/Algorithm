@@ -10,7 +10,7 @@ function solution(id_list, report, k) {
     answer.push(0);
     reportedCount.push(0);
   });
-  report.forEach((v, i) => {
+  report.forEach((v) => {
     let reportUser = v.split(" ")[0]; // 신고자
     let reportedUser = v.split(" ")[1]; // 신고당한사람
     let reporteduserindex = id_list.indexOf(reportedUser);
@@ -45,7 +45,3 @@ function solution(id_list, report, k) {
 
   return answer;
 }
-
-console.log(
-  solution(["con", "ryan"], ["ryan con", "ryan con", "ryan con", "ryan con"], 3)
-);
