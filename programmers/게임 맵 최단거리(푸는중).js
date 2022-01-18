@@ -1,38 +1,26 @@
 function solution(maps) {
-  let answer = 0;
-  let row = maps[0].length;
-  let col = maps.length;
-  let dx = [-1, 0, 1, 0];
-  let dy = [0, 1, 0, -1];
+  let row = maps.length;
+  let col = maps[0].length;
+  let dx = [0, 1, 0, -1];
+  let dy = [-1, 0, 1, 0];
   let queue = [[0, 0]];
-  let distance = Array.from(Array(row + 1), () => Array(col).fill(0));
+  let distance = Array.from(Array(row), () => Array(col).fill(1));
 
   while (queue.length) {
-    let L = queue.shift();
-    console.log(distance);
+    const [y, x] = queue.shift();
 
     dx.forEach((v, i) => {
-      if (v === row && dy[i] === col) {
-        answer = Math.max(answer, distance[L[0]][L[1]]);
-      } else {
-        if (
-          L[0] + v >= 0 &&
-          L[1] + dy[i] >= 0 &&
-          L[0] + v < col &&
-          L[1] + dy[i] < row &&
-          maps[L[0] + v][L[1] + dy[i]] === 1
-        ) {
-          console.log(L[0], L[1]);
-          maps[L[0]][L[1]] = 1; // 지나온길체크
-          distance[L[0] + v][L[1] + dy[i]] = distance[L[0]][L[1]] + 1;
-          maps[L[0]][L[1]] = 0; // 지나온길풀기
-          queue.push([L[0] + v, L[1] + dy[i]]);
+      const newx = x + v;
+      const newy = y + dy[i];
+      if (newx >= 0 && newy >= 0 && newx < col && newy < row) {
+        if (maps[newy][newx] === 1 && distance[newy][newx] === 1) {
+          distance[newy][newx] = distance[y][x] + 1;
+          queue.push([newy, newx]);
         }
       }
     });
   }
-
-  return answer;
+  return distance[row - 1][col - 1] === 1 ? -1 : distance[row - 1][col - 1];
 }
 console.log(
   solution([
