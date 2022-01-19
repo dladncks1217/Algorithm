@@ -12,11 +12,16 @@ function solution(maps) {
     dx.forEach((v, i) => {
       const newx = x + v;
       const newy = y + dy[i];
-      if (newx >= 0 && newy >= 0 && newx < col && newy < row) {
-        if (maps[newy][newx] === 1 && distance[newy][newx] === 1) {
-          distance[newy][newx] = distance[y][x] + 1;
-          queue.push([newy, newx]);
-        }
+      if (
+        newx >= 0 &&
+        newy >= 0 &&
+        newx < col &&
+        newy < row &&
+        maps[newy][newx] === 1 &&
+        distance[newy][newx] === 1
+      ) {
+        distance[newy][newx] = distance[y][x] + 1;
+        queue.push([newy, newx]);
       }
     });
   }
