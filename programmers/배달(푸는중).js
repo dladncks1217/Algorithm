@@ -1,38 +1,42 @@
 function solution(N, road, K) {
-  let answer = 0;
   let graph = Array.from(Array(N + 1), () => Array(N + 1).fill(0));
   let check = Array.from({ length: N + 1 }, () => 0);
-  let result = Array.from({ length: N + 1 }, () => false);
+
+  let queue = [];
 
   for (let [a, b, c] of road) {
-    graph[a][b] = c;
-    graph[b][a] = c;
+    if (graph[a][b] > c && graph[a][b] !== 0) graph[a][b] = c;
+    if (graph[b][a] > c && graph[b][a] !== 0) graph[b][a] = c;
+    if (graph[a][b] === 0) graph[a][b] = c;
+    if (graph[b][a] === 0) graph[b][a] = c;
   }
 
-  check[N] = 1;
-  function DFS(point, end, sum) {
-    if (sum > K) return;
-    if (point === end && sum <= K && result[point] === false) {
-      result[point] = true;
-      console.log(point);
-      answer++;
-    } else {
-      for (let i = 1; i <= N; i++) {
-        if (graph[point][i] !== 0 && check[point] === 0) {
-          check[point] = 1;
-          DFS(i, end, sum + graph[point][i]);
-          check[point] = 0;
-        }
-      }
+  for (let i = 0; i < road.length; i++) {
+    if (graph[1][i] <= K && graph[1][i] > 0) {
+      queue.push([1, i]);
+      check[i] = 1;
     }
   }
 
-  for (let i = 2; i <= 5; i++) {
-    DFS(1, i, 0);
-  }
+  while (queue.length) {
+    let L = queue.shift();
 
-  console.log(graph);
-  return answer + 1;
+    let prev = L[0];
+    let now = L[1];
+    for (let i = 0; i <= N; i++) {
+      if (
+        check[i] === 0 &&
+        graph[now][i] > 0 &&
+        graph[prev][now] + graph[now][i] <= K
+      ) {
+        queue.push([now, i]);
+        check[i] = 1;
+        graph[now][i] += graph[prev][now];
+      }
+    }
+  }
+  check = check.filter((v) => v === 1);
+  return check.length;
 }
 
 console.log(
