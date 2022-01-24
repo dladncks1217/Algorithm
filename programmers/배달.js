@@ -1,7 +1,7 @@
 function solution(N, road, K) {
   let graph = Array.from(Array(N + 1), () => Array(N + 1).fill(0));
+  let distance = Array.from({ length: N + 1 }, () => distance);
   let check = Array.from({ length: N + 1 }, () => 0);
-  let distance = Array.from({ length: N + 1 }, () => 0);
   let queue = [];
 
   for (let [a, b, c] of road) {
@@ -11,32 +11,15 @@ function solution(N, road, K) {
     if (graph[b][a] === 0) graph[b][a] = c;
   }
 
-  for (let i = 0; i < road.length; i++) {
-    if (graph[1][i] <= K && graph[1][i] > 0) {
-      queue.push([1, i]);
-      check[i] = 1;
-    }
-  }
+  queue.push([1, 0]);
+  distance[1] = 0;
 
   while (queue.length) {
-    let L = queue.shift();
-
-    let prev = L[0];
-    let now = L[1];
-    for (let i = 0; i <= N; i++) {
-      if (
-        check[i] === 0 &&
-        graph[now][i] > 0 &&
-        graph[prev][now] + graph[now][i] <= K
-      ) {
-        queue.push([now, i]);
-        check[i] = 1;
-        graph[now][i] += graph[prev][now];
-      }
+    const [town, cost] = queue.shift();
+    for(let i = 0;i<N;i++){
+      
     }
   }
-  check = check.filter((v) => v === 1);
-  return check.length;
 }
 
 console.log(
