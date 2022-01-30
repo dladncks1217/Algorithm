@@ -8,7 +8,7 @@ function solution(N, road, K) {
     graph[a].push([b, c]);
     graph[b].push([a, c]);
   }
-
+  console.log(graph);
   queue.push([1, 0]);
   distance[1] = 0;
   while (queue.length) {
@@ -25,6 +25,7 @@ function solution(N, road, K) {
   }
 
   distance = distance.filter((v) => v <= K);
+  console.log(distance);
   return distance.length;
 }
 
