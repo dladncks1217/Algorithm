@@ -2,6 +2,7 @@
 let uniquePaths = function (m, n) {
   let answer = 0;
   let memo = Array.from(Array(m + 1), () => Array(n + 1).fill(0));
+  console.log(memo);
 
   function DFS(y, x) {
     if (memo[y][x] > 0) return 0;
