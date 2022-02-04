@@ -11,17 +11,14 @@ function scoreCheck(ryan, apeach) {
   }
   return rscore - ascore;
 }
-
 function solution(n, info) {
   let answer = [-1];
   let score = Array.from({ length: info.length }, () => 0); // 라이언의 점수
   let check = 0; // 점수차이 확인
   function DFS(L) {
-    if (L > n) return;
     if (L === n) {
       // 다 쐈을때
       let newcheck = scoreCheck(score, info);
-      //   console.log(score);
       if (newcheck >= check) {
         // 새로운게 더 좋은케이스
         check = newcheck;
@@ -31,10 +28,10 @@ function solution(n, info) {
       for (let i = 0; i < info.length; i++) {
         if (score[i] - info[i] >= 1) return;
         if (info[i] >= score[i]) {
-          score[i] += info[i] + 1;
-          DFS(L + info[i] + 1);
-
-          score[i] -= info[i] + 1;
+          //   console.log(score);
+          score[i] += 1;
+          DFS(L + 1);
+          score[i] -= 1;
         }
       }
     }
@@ -43,6 +40,6 @@ function solution(n, info) {
   return answer;
 }
 
-console.log(solution(1, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+console.log(solution(9, [0, 0, 1, 2, 0, 1, 1, 1, 1, 1, 1]));
 
-// 23,24,25번 틀림, 시간초과문제는 해결
+// 백트래킹 시도 5,6,22 시간초과, 23 실패
