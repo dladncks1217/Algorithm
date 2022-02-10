@@ -9,8 +9,9 @@
 
 - [ ] Kth Largest Element in an Array 퀵소트풀이방법으로 다시풀어보기
 - [ ] Combinatino sum 복습 (백트래킹)
-- [ ] 3Sum 복습 (투포인터)
+- [x] 3Sum 복습 (투포인터)
 - [ ] Two Sum 복습 (투포인터)
+- [ ] Unique Path 복습 (DP)
 
 ## 백준
 
@@ -20,11 +21,11 @@
 
 ## 프로그래머스
 
-- [ ] 양궁대회 백트래킹문제 (5,6,22번 시간초괴, 23번 실패)
+- [ ] 양궁대회 백트래킹문제 (23, 24, 25번 실패상태)
 
 ## leetcode
 
-- [ ] Unique Path DP문제 백트래킹+메모이제이션 풀이 시도 실패 (다시풀기)
+- [x] Unique Path DP문제 백트래킹+메모이제이션 풀이 시도 실패 (DP로풀음)
 - [ ] Jump Game DP문제 실패
 
 ## 백준
