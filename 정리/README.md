@@ -3,7 +3,7 @@
 ## 프로그래머스
 
 - [ ] 배달 다익스트라문제 복습 필요
-- [ ] 가장 먼 노드 복습 필요
+- [x] 가장 먼 노드 복습 필요
 
 ## leetcode
 
@@ -11,7 +11,7 @@
 - [ ] Combinatino sum 복습 (백트래킹)
 - [x] 3Sum 복습 (투포인터)
 - [ ] Two Sum 복습 (투포인터)
-- [ ] Unique Path 복습 (DP)
+- [x] Unique Path 복습 (DP)
 
 ## 백준
 
