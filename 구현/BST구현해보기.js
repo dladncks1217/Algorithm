@@ -10,6 +10,10 @@ function BST() {
     return this.count;
   };
 
+  arguments.callee.prototype.search = (data) => {
+    return searchNode(data, this.root);
+  };
+
   arguments.callee.prototype.remove = (data) => {
     let node = removeNode(data, this.root);
     if (node) {
@@ -36,6 +40,14 @@ function insertNode(node, root) {
   }
 }
 
+function searchNode(data, node) {
+  if (data < node.data) {
+    return searchNode(data, node.left);
+  } else if (data > node.data) {
+    return searchNode(data, node.right);
+  } else return node;
+}
+
 function removeNode(data, root) {
   if (!root) return null;
   if (data < root.data) {
@@ -43,56 +55,44 @@ function removeNode(data, root) {
   } else if (data > root.data) {
     root.right = removeNode(data, root.right);
   } else {
-    if (!root.left) {
+    if (!root.left && !root.right) {
+      return;
+    } else if (!root.left) {
       return root.right;
     } else if (!root.right) {
       return root.left;
     } else {
-      let changeData = findSmallestLeft(root.left); // 왼쪽에서 가장 큰 값이랑 바꿀 예정
-
+      let changeData = root.left;
+      while (changeData.right) changeData = changeData.right;
       [root.data, changeData.data] = [changeData.data, root.data];
       root.left = removeNode(changeData.data, root.left);
     }
   }
   return root;
 }
-// 왼쪽에서 가장 큰 값이랑 바꾸기 함수
-function findSmallestLeft(node) {
-  let result = node;
-  while (!result) {
-    result = node.right;
-  }
-  return result;
-}
-
-// function
 
 let newTree = new BST();
-// newTree.add(5); // 1
-// newTree.add(3); // 2
-// newTree.add(4); // 3
-// newTree.add(2); // 4
-// newTree.add(7); // 5
-// newTree.add(6); // 6
-// console.log(newTree.root.left.data);
-// console.log(newTree.root.left.left.data);
-// console.log(newTree.root.left.right.data);
-// console.log(newTree);
-// console.log(newTree.remove(3));
 
-// console.log(newTree.root.left.right);
-// console.log(newTree);
 newTree.add(6);
 newTree.add(4);
 newTree.add(9);
-newTree.add(3);
+newTree.add(2);
 newTree.add(5);
 newTree.add(1);
-newTree.add(2);
+newTree.add(3);
 newTree.add(8);
 newTree.add(7);
+// newTree.add(8);
+// newTree.add(3);
+// newTree.add(10);
+// newTree.add(1);
+// newTree.add(6);
+// newTree.add(14);
+// newTree.add(4);
+// newTree.add(7);
+// newTree.add(13);
 console.log(newTree);
-console.log(newTree.root.right);
-newTree.remove(4);
-console.log(newTree);
-console.log(newTree.root.left);
+// console.log(newTree.root.right);
+// newTree.remove(6);
+// console.log(newTree);
+// console.log(newTree.search(3));
