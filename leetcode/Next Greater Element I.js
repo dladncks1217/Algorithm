@@ -15,7 +15,6 @@ let nextGreaterElement = function (nums1, nums2) {
           answer.push(-1);
           break;
         }
-
         if (nums2[check] > v) {
           answer.push(nums2[check]);
           break;
