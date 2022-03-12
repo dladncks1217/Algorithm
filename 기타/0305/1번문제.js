@@ -21,7 +21,7 @@ function solution(purchases) {
       check.push([dates, v[2]]);
     }
   });
-
+  console.log(check);
   let resultmoney = 0;
   // 1년순회
   for (let i = 1; i <= 365; i++) {

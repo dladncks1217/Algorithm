@@ -9,7 +9,7 @@
 
 ## leetcode
 
-- [ ] Kth Largest Element in an Array 퀵소트풀이방법으로 다시풀어보기
+- [ ] Kth Largest Element in an Array 퀵소트풀이방법으로 다시풀어보기   
 - [ ] Combinatino sum 복습 (백트래킹)
 - [x] 3Sum 복습 (투포인터)
 - [ ] Two Sum 복습 (투포인터)
