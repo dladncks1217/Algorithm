@@ -13,7 +13,7 @@ let addOperators = function (num, target) {
       for (let i = 1; i <= length; i++) {
         const curr = Number(str.slice(0, i));
         const rest = str.slice(i);
-
+        console.log(curr);
         if (!temp.length) DFS(rest, curr, curr, [curr]);
         else {
           DFS(rest, sum + curr, curr, [...temp, "+", curr]);
