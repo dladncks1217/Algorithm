@@ -13,9 +13,8 @@ function changebit(bit) {
       }
     }
   }
-
   bit = bit.join("");
-  return Number(BigInt(parseInt(bit, 2)));
+  return parseInt(bit, 2);
 }
 
 function solution(numbers) {
