@@ -24,3 +24,4 @@ let isAnagram = function (s, t) {
   return answer;
 };
 console.log(isAnagram("rat", "car"));
+    
