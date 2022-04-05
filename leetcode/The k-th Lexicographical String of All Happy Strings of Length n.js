@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n
 /**
  * @param {number} n
  * @param {number} k
@@ -9,6 +10,7 @@ let getHappyString = function (n, k) {
   let alphabets = ["a", "b", "c"];
 
   function DFS(L, str) {
+    if (answer.length > k) return;
     if (L === n) {
       return answer.push(str);
     } else {
