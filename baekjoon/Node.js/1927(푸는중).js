@@ -62,17 +62,20 @@ function heapDown(self, idx) {
   }
 }
 
+const answer = [];
 let heap = new MinHeap();
 
 input.forEach((v) => {
   if (v === 0) {
     if (heap.heap.length) {
-      console.log(heap.heap[0]);
+      answer.push(heap.heap[0]);
       heap.delete();
     } else {
-      console.log(0);
+      answer.push(0);
     }
   } else {
     heap.insert(v);
   }
 });
+
+console.log(answer.join("\n"));
