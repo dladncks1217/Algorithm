@@ -68,5 +68,8 @@ heap.delete();
 heap.delete();
 heap.delete();
 heap.delete();
+heap.delete();
+heap.delete();
+heap.delete();
 
 console.log(heap);
