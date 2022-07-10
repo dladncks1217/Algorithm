@@ -2,7 +2,7 @@ function MinHeap() {
   this.heap = []; // 힙으로 들어갈 배열.
 
   arguments.callee.prototype.insert = (number) => {
-    let last = this.heap.length;
+    const last = this.heap.length;
     this.heap[last] = number;
     heapUp(this.heap, last); // 끝애서부터 데이터 넣고 재귀로 탐색하며 확인함
   };
@@ -21,7 +21,7 @@ function MinHeap() {
 
 function heapUp(self, idx) {
   if (idx > 0) {
-    let parent = parseInt((idx - 1) / 2);
+    const parent = parseInt((idx - 1) / 2);
     if (self[idx] < self[parent]) {
       [self[idx], self[parent]] = [self[parent], self[idx]];
       heapUp(self, parent);
@@ -53,23 +53,15 @@ function heapDown(self, idx) {
   }
 }
 
-let heap = new MinHeap();
-heap.insert(5);
+const heap = new MinHeap();
 heap.insert(3);
-heap.insert(7);
-heap.insert(4);
-heap.insert(2);
 heap.insert(6);
+heap.insert(7);
+heap.insert(5);
+heap.insert(8);
+heap.insert(2);
 heap.insert(1);
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
-heap.delete();
+heap.insert(4);
 heap.delete();
 
 console.log(heap);
