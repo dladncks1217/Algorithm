@@ -17,6 +17,8 @@ for (let i = 0; i < input.length; i++) {
   for (let k = maxBag; k >= weight; k--) {
     //dy의 k용량은 기본 k 인덱스값 vs (기본 k 인덱스값+value)
     dy[k] = Math.max(dy[k], dy[k - weight] + value);
+    console.log(dy);
   }
 }
+
 console.log(Math.max(...dy));
