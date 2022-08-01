@@ -1,4 +1,4 @@
-// 9084와 같은문제
+
 let fs = require("fs");
 let input = fs.readFileSync("./dev/stdin").toString().split("\n");
 let t = +input.shift();
