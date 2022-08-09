@@ -9,15 +9,15 @@ const [[maxStudy, length], ...input] = require("fs")
   });
 
 let answer = 0;
-let dy = Array.from({ length: length }, () =>
+let dy = Array.from({ length: length + 1 }, () =>
   Array.from({ length: maxStudy + 1 }).fill(0)
 );
 // let dy = Array.from({ length: 1001 }, () =>
 //   Array.from({ length: 10001 }).fill(0)
 // );
 
-for (let i = 1; i < length; i++) {
-  const [importRate, needTime] = input[i];
+for (let i = 1; i <= length; i++) {
+  const [importRate, needTime] = input[i - 1];
 
   for (let k = 1; k <= maxStudy; k++) {
     if (needTime > k) dy[i][k] = dy[i - 1][k];
@@ -29,4 +29,5 @@ for (let i = 1; i < length; i++) {
 
 // console.log(dy[dy.length - 1][dy[0].length - 1]);
 // console.log(dy[length][maxStudy]);
+
 console.log(answer);
