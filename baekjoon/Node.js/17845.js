@@ -28,6 +28,6 @@ for (let i = 1; i <= length; i++) {
 }
 
 // console.log(dy[dy.length - 1][dy[0].length - 1]);
-// console.log(dy[length][maxStudy]);
+console.log(dy);
 
 console.log(answer);
