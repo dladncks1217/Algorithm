@@ -6,13 +6,11 @@ const [str, bomb] = require("fs")
 
 let stack = [];
 let searchStart = bomb[bomb.length - 1];
-let top = 0;
 
 for (let i = 0; i < str.length; i++) {
   stack.push(str[i]);
-  top = str[i];
 
-  if (top === searchStart) {
+  if (str[i] === searchStart) {
     let last = stack.slice(-bomb.length);
     let checkstr = last.join("");
 
