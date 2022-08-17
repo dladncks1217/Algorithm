@@ -30,7 +30,7 @@ let dybig = Math.max(...dy); // dy값중 제일 큰거
 console.log(dybig);
 let state = dy.indexOf(dybig); // dy 제일큰거 인덱스
 let big = input[state]; // 제일 큰 값
-result.push(big); // 값 넣고
+result.push(big); // 값 넣고`
 for (let i = state - 1; i >= 0; i--) {
   if (dy[i] === dybig - 1) {
     result.push(input[i]);
