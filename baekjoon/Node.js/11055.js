@@ -13,7 +13,7 @@ dy[0] = input[0];
 
 for (let i = 0; i < dy.length; i++) {
   let max = 0;
-  for (let k = i; k >= 0; k--) {
+  for (let k = i - 1; k >= 0; k--) {
     if (input[i] > input[k] && dy[k] > max) {
       max = dy[k];
     }
