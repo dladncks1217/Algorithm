@@ -10,6 +10,7 @@ const [[N], [...input]] = require("fs")
 
 let list = []; // 하나씩 순서대로 숫자들 담을 배열
 list.push(input[0]); // 첫 숫자 갖다넣기
+const dy = [1];
 
 // 이진탐색
 function binarySearch(target) {
@@ -36,8 +37,10 @@ while (right < N) {
   if (list[left] < input[right]) {
     left++;
     list[left] = input[right];
+    dy.push(list.length);
   } else {
     // list 마지막 수가 들어갈 수보다 작다면 어디에 들어가야하는건지 찾기
+    dy.push(list.length);
     let index = binarySearch(input[right]);
     list[index] = input[right];
   }
@@ -45,4 +48,15 @@ while (right < N) {
 }
 // 순서대로 들어간 수들 길이 출력
 console.log(list.length);
-console.log(list.join(" "));
+
+const answer = [];
+let start = 1;
+if (dy[0] === 1 && dy[1] === 2) answer.push(input[0]);
+for (let i = 1; i < dy.length; i++) {
+  if (start !== dy[i]) {
+    start = dy[i];
+    answer.push(input[i]);
+  }
+}
+
+console.log(answer.join(" "));
