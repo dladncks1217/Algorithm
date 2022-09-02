@@ -10,7 +10,7 @@ const [[N], [...input]] = require("fs")
 
 let list = []; // 하나씩 순서대로 숫자들 담을 배열
 list.push(input[0]); // 첫 숫자 갖다넣기
-const dy = [1];
+const dy = [0];
 
 // 이진탐색
 function binarySearch(target) {
@@ -19,8 +19,6 @@ function binarySearch(target) {
 
   while (left < right) {
     let mid = Math.floor((left + right) / 2);
-
-    // target과 가장 근접한 숫자 인덱스 찾기(list에서)
     if (list[mid] < target) {
       left = mid + 1;
     } else {
@@ -37,12 +35,12 @@ while (right < N) {
   if (list[left] < input[right]) {
     left++;
     list[left] = input[right];
-    dy.push(list.length);
+    dy[right] = left;
   } else {
     // list 마지막 수가 들어갈 수보다 작다면 어디에 들어가야하는건지 찾기
-    dy.push(list.length);
     let index = binarySearch(input[right]);
     list[index] = input[right];
+    dy[right] = index;
   }
   right++;
 }
@@ -50,13 +48,13 @@ while (right < N) {
 console.log(list.length);
 
 const answer = [];
-let start = 1;
-if (dy[0] === 1 && dy[1] === 2) answer.push(input[0]);
-for (let i = 1; i < dy.length; i++) {
-  if (start !== dy[i]) {
-    start = dy[i];
+let max = Math.max(...dy);
+answer.push(input[dy.indexOf(max)]);
+for (let i = dy.indexOf(max) - 1; i >= 0; i--) {
+  if (dy[i] + 1 === max) {
+    max = dy[i];
     answer.push(input[i]);
   }
 }
 
-console.log(answer.join(" "));
+console.log(answer.reverse().join(" "));
