@@ -4,20 +4,42 @@ const [length, ...input] = require("fs")
   .trim()
   .split("\n");
 let loop;
+
+let set = [];
+let setLength = [];
+
+// find 연산
+function finds(find) {
+  if (set[find] === find) {
+    return find;
+  } else {
+    return (set[find] = finds(set[find]));
+  }
+}
+// union 연산
+function union(a, b) {
+  let parentA = finds(a);
+  let parentB = finds(b);
+
+  if (parentA > parentB) {
+    set[parentA] = parentB;
+    setLength[parentB] += setLength[parentA];
+  } else {
+    set[parentB] = parentA;
+    setLength[parentA] += setLength[parentB];
+  }
+}
+
 for (let i = 0; i < input.length; i++) {
   if (!isNaN(parseInt(input[i]))) {
-    // let num = parseInt(input[i]);
     loop = parseInt(input[i]);
-
-    // i += num - 1;
-
     continue;
   } else {
     // x번돌리기
     const answer = [];
     const names = [];
-    const set = [];
-    const setLength = [];
+    set = [];
+    setLength = [];
 
     // 사람이름 처리
     for (let k = 1; k <= loop; k++) {
@@ -43,29 +65,6 @@ for (let i = 0; i < input.length; i++) {
           names.push(name2);
           set.push(0);
           setLength.push(1);
-        }
-      }
-
-      // find 연산
-      function finds(find) {
-        if (set[find] === find) {
-          return find;
-        } else {
-          return (set[find] = finds(set[find]));
-        }
-      }
-
-      // union 연산
-      function union(a, b) {
-        let parentA = finds(a);
-        let parentB = finds(b);
-
-        if (parentA > parentB) {
-          set[parentA] = parentB;
-          setLength[parentB] += setLength[parentA];
-        } else {
-          set[parentB] = parentA;
-          setLength[parentA] += setLength[parentB];
         }
       }
 
