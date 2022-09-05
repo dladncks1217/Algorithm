@@ -14,15 +14,12 @@ for (let i = 0; i < input.length; i++) {
   const [x1, y1] = input[i];
   for (let k = i + 1; k < input.length; k++) {
     const [x2, y2] = input[k];
-    console.log(Math.pow(x1 - x2, 2));
-    let a = Math.pow(x1 - x2) + Math.pow(y1 - y2);
-
-    dist.push(
-      Number(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)).toFixed(2))
-    );
+    let a = Number(Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2).toFixed(2));
+    dist.push([i, k, a]);
   }
 }
-console.log(dist);
+
+dist.sort((a, b) => a[2] - b[2]);
 
 const set = Array.from({ length: dist.length }, (v, i) => i);
 
@@ -46,7 +43,7 @@ function findParent(a, b) {
 }
 
 let answer = 0;
-for (const v of set) {
+for (const v of dist) {
   const [vertices1, vertices2, cost] = v;
   if (!findParent(vertices1, vertices2)) {
     answer += cost;
