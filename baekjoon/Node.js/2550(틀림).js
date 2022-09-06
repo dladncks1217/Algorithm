@@ -4,7 +4,7 @@ const [[N], input1, input2] = require("fs")
   .trim()
   .split("\n")
   .map((v) => {
-    v = v.split(" ").map(Number);
+    v = v.trim().split(/\s+/g).map(Number);
     return v;
   });
 const input = [];
