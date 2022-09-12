@@ -8,8 +8,7 @@ const [[N, M], ...input] = require("fs")
     return v;
   });
 
-let answer = 0;
-const arr = [];
+const dist = [];
 const linked = [];
 
 for (let i = 0; i < M; i++) {
@@ -22,12 +21,12 @@ for (let i = 0; i < input.length; i++) {
   for (let k = i + 1; k < input.length; k++) {
     const [x1, y1] = input[i];
     const [x2, y2] = input[k];
-    let check = Number(Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2).toFixed(2));
-    arr.push([i, k, check]);
+    let check = Number(Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2));
+    dist.push([i, k, check]);
   }
 }
 
-arr.sort((a, b) => a[2] - b[2]);
+dist.sort((a, b) => a[2] - b[2]);
 
 const set = Array.from({ length: length }, (v, i) => i);
 
@@ -50,15 +49,18 @@ function isCycle(a, b) {
 }
 
 for (let i = 0; i < linked.length; i++) {
-  if (!isCycle(linked[i][0], linked[i][1])) {
-    union(linked[i][0] - 1, linked[i][1] - 1);
-  }
+  const [vertices1, vertices2, cost] = linked[i];
+  union(vertices1 - 1, vertices2 - 1);
 }
 
-for (let i = 0; i < arr.length; i++) {
-  if (!isCycle(arr[i][0], arr[i][1])) {
-    answer += arr[i][2];
-    union(arr[i][0], arr[i][1]);
+let answer = 0;
+for (let i = 0; i < dist.length; i++) {
+  const [vertices1, vertices2, cost] = dist[i];
+
+  if (!isCycle(vertices1, vertices2)) {
+    answer += cost;
+
+    union(vertices1, vertices2);
   }
 }
 

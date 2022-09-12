@@ -39,7 +39,8 @@ for (let i = 0; i < input.length; i++) {
     }
 
     let arr = [];
-    for (let k = 0; k < count; k++) {
+    const countCheck = i;
+    for (let k = i; k < count + countCheck; k++) {
       arr.push(input[k].slice());
       i++;
     }
