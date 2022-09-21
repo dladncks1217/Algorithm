@@ -11,13 +11,9 @@ const [[N, M, Q], waters, ...input] = require("fs")
 const old = Array.from({ length: N + 1 }, () => 0);
 const fresh = Array.from({ length: N + 1 }, () => 0);
 
-// 고인물
+// 고인물 청정수 구분
 for (let i = 0; i < waters.length; i++) {
   if (waters[i] === 0) old[i + 1] = 1;
-}
-
-// 청정수
-for (let i = 0; i < waters.length; i++) {
   if (waters[i] === 1) fresh[i + 1] = 1;
 }
 
@@ -45,35 +41,29 @@ function find(parent) {
 function union(a, b) {
   const parentA = find(a);
   const parentB = find(b);
-  // console.log(waters, a - 1, b - 1, waters[a - 1], waters[b - 1]);
-  const result =
-    parentA < parentB ? (set[parentB] = parentA) : (set[parentA] = parentB);
 
-  const reverseResult = parentA < parentB ? parentB : parentA;
-
-  // console.log(result, reverseResult);
-  if (waters[a] === 0) old[reverseResult]++;
-  else fresh[result]++;
-  if (waters[b] === 0) old[reverseResult]++;
-  else fresh[result]++;
-
-  const data = fresh[result];
-  fresh[result] -= old[reverseResult];
-  old[reverseResult] -= data;
+  if (parentA === parentB) return;
+  if (parentA < parentB) {
+    fresh[parentA] += fresh[parentB];
+    old[parentA] += old[parentB];
+    set[parentB] = parentA;
+  } else {
+    fresh[parentB] += fresh[parentA];
+    old[parentB] += old[parentA];
+    set[parentA] = parentB;
+  }
 }
 
 for (let i = 0; i < M; i++) {
   const [tank1, tank2] = unionList[i];
   union(tank1, tank2);
-  console.log(set);
-  console.log(fresh, old);
 }
 
+const result = [];
 for (let i = 0; i < Q; i++) {
-  const check = visitList[i];
-  if (fresh[set[check]] - old[set[check]] > 0) console.log(1);
-  else console.log(0);
+  let check = find(visitList[i]); // 방문한곳
+  if (fresh[check] > old[check]) result.push(1);
+  else result.push(0);
 }
 
-// console.log(set);
-// console.log(fresh, old);
+console.log(result.join("\n"));
