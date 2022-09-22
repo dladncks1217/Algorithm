@@ -4,7 +4,7 @@ const [[N, M], ...input] = require("fs")
   .trim()
   .split("\n")
   .map((v) => {
-    v = v.split(" ").map(Number);
+    v = v.split(/\s+/g).map(Number);
     return v;
   });
 
@@ -39,8 +39,8 @@ for (let i = 1; i <= input.length; i++) {
   if (num === 1) {
     update(p, q - arr[p]);
     arr[p] = q;
-  } else {
-    // q < p ? ([p, q] = [q, p]) : "";
+  } else if (num === 0) {
+    q < p ? ([p, q] = [q, p]) : "";
     result.push(interval_sum(p, q));
   }
 }

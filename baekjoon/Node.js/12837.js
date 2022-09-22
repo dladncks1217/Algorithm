@@ -37,10 +37,9 @@ for (let i = 1; i <= input.length; i++) {
   let [num, p, q] = input[i - 1];
 
   if (num === 1) {
-    update(p, q - arr[p]);
-    arr[p] = q;
-  } else {
-    // q < p ? ([p, q] = [q, p]) : "";
+    update(p, q);
+    arr[p] += q;
+  } else if (num === 2) {
     result.push(interval_sum(p, q));
   }
 }
