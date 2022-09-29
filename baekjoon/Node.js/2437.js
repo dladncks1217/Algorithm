@@ -10,16 +10,11 @@ const [[N], input] = require("fs")
 
 input.sort((a, b) => a - b);
 
-const prefix_sum = [];
+let sum = 1;
 
-let sum = input[0];
-prefix_sum.push(input[0]);
-for (let i = 1; i < input.length; i++) {
+for (let i = 0; i < input.length; i++) {
+  if (sum < input[i]) break;
   sum += input[i];
-  prefix_sum[i] = sum;
 }
 
-console.log(input);
-console.log(prefix_sum);
-
-for(let i = 0;i<)
+console.log(sum);
