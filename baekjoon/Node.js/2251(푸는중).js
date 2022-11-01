@@ -6,3 +6,6 @@ const input = require("fs")
   .map(Number);
 
 console.log(input);
+
+const answer = [];
+
