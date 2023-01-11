@@ -1,23 +1,22 @@
-const fs = require('fs');
+const input = +require("fs").readFileSync("./dev/stdin").toString().trim();
 
-let input = fs.readFileSync("dev/stdin").toString();
-let variable = input.split(' ');
+let answer = Infinity;
 
-let wantlength = variable[0];
-let originstick = 64;
+function DFS(x, visited) {
+  if (visited === input) {
+    answer = Math.min(answer, visited);
+  }
 
-let stick1, stick2, answerstick, garbagestick;
-
-    stick1 = 32;
-    stick2 = 32;
-
-    for(let i = 0;wantlength==answerstick;i++){
-        garbagestick = stick2/2; //16
-        answerstick = garbagestick+stick1; //48
-        if(answerstick => wantlength){
-            stick1 = stick1/2;//16
-            
-        }
-        
-
+  for (let i = 0; i <= 6; i++) {
+    if (visited & (1 << i)) continue;
+    DFS(i, visited | (1 << i));
+  }
 }
+
+DFS(0, 0);
+console.log(
+  answer
+    .toString(2)
+    .split("")
+    .filter((v) => v === "1").length
+);
