@@ -11,6 +11,7 @@ let [[N], ...input] = require("fs")
 function student(N, M, students) {
   const visited = Array.from({ length: N + 1 }, () => -1);
   const target = Array.from({ length: N + 1 }, (_, index) => index);
+  const count = 0;
 }
 
 while (N > 0) {
