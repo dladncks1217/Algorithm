@@ -14,8 +14,6 @@ function solution(plans) {
 
   plans.sort((a, b) => a[1] - b[1]);
 
-  console.log(plans);
-
   for (let i = 0; i < plans.length - 1; i++) {
     const nextStartTime = plans[i + 1][1];
     const nowEndTime = plans[i][1] + plans[i][2];
@@ -27,7 +25,6 @@ function solution(plans) {
       unFinishedLeft <= nextStartTime - nowEndTime
     ) {
       answer.push(unFinished.pop()[0]);
-      continue;
     }
     if (nextStartTime - nowEndTime < 0) {
       const unFinishedJob = [
@@ -36,21 +33,18 @@ function solution(plans) {
         nowEndTime - nextStartTime,
       ];
       unFinished.push(unFinishedJob);
-      continue;
     }
     if (nextStartTime - nowEndTime >= 0) {
       answer.push(plans[i][0]);
-      continue;
     }
-    
   }
 
-  // answer.push(plans[plans.length - 1][0]);
-  // unFinished.reverse();
+  answer.push(plans[plans.length - 1][0]);
+  unFinished.reverse();
 
-  // unFinished.forEach((plan) => {
-  //   answer.push(plan[0]);
-  // });
+  unFinished.forEach((plan) => {
+    answer.push(plan[0]);
+  });
 
   return answer;
 }
@@ -79,12 +73,12 @@ function solution(plans) {
 //   ])
 // );
 
-console.log(
-  solution([
-    ["1", "00:00", "30"],
-    ["2", "00:10", "40"],
-    ["3", "00:20", "10"],
-    ["4", "00:25", "10"],
-    ["5", "01:10", "10"],
-  ])
-);
+// console.log(
+//   solution([
+//     ["1", "00:00", "30"],
+//     ["2", "00:10", "40"],
+//     ["3", "00:20", "10"],
+//     ["4", "00:25", "10"],
+//     ["5", "01:10", "10"],
+//   ])
+// );
